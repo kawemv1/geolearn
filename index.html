@@ -1,1 +1,191 @@
-404: Not Found
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>GeoLearn</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+
+  <!-- ✅ Import Montserrat font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ✅ Apply Montserrat globally */
+    body, button, input, select, textarea {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Smooth rendering */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Headings slightly stronger */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    /* Minor spacing & contrast for cleaner UI */
+    .hero {
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      color: white;
+      text-align: center;
+      padding: 6rem 1rem 4rem;
+      border-radius: 0 0 1.5rem 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.95;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 3rem;
+      color: #64748b;
+      font-size: 0.9rem;
+      background: #f8fafc;
+    }
+
+    .card {
+      border-radius: 1rem;
+      border: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: transform .3s, box-shadow .3s;
+      background: #fff;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    h3 {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #1e293b;
+    }
+
+    p {
+      color: #475569;
+    }
+
+    .btn {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      border-radius: .5rem;
+      transition: all .3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="inner">
+    <a href="index.html" class="logo">🌍 GeoLearn</a>
+    <nav>
+      <a href="index.html" data-i18n="home" style="color:#2563eb;font-weight:600;">Home</a>
+      <a href="lessons.html" data-i18n="lessons">Lessons</a>
+      <a href="world-map.html" data-i18n="map">World Map</a>
+      <a href="training.html" data-i18n="training">Training</a>
+      <a href="ai-chat.html" data-i18n="chat">AI Chat</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:1rem">
+      <div class="lang-switch">
+        <div class="lang-selected">
+          <img id="langFlag" class="lang-flag" src="assets/flags/kz.png">
+          <span id="langName">KZ</span>
+        </div>
+        <div class="lang-dropdown">
+          <div class="lang-item" data-lang="kz"><img class="lang-flag" src="assets/flags/kz.png">Қазақ тілі</div>
+          <div class="lang-item" data-lang="ru"><img class="lang-flag" src="assets/flags/ru.png">Русский</div>
+          <div class="lang-item" data-lang="en"><img class="lang-flag" src="assets/flags/gb.png">English</div>
+        </div>
+      </div>
+      <a href="lessons.html" class="btn" data-i18n="start">Get Started</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 data-i18n="hero_title">Explore Our Amazing World</h1>
+  <p data-i18n="hero_text">Learn geography through engaging lessons, interactive maps, and olympiad preparation.</p>
+</section>
+
+<!-- COURSE INTRO -->
+<div class="container">
+  <h2 style="text-align:center;font-size:1.75rem;font-weight:700;margin-bottom:1.5rem" data-i18n="start_journey">Start Your Geography Journey</h2>
+  <div class="grid grid-3">
+    <div class="card">
+      <h3 data-i18n="card1_title">Comprehensive Lessons</h3>
+      <p data-i18n="card1_text">Curriculum from Grade 7–11 with interactive materials.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card2_title">Interactive World Maps</h3>
+      <p data-i18n="card2_text">Explore political, physical, and satellite maps.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card3_title">Test Your Knowledge</h3>
+      <p data-i18n="card3_text">Practice tests for UBT and Geography Olympiads.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="container" style="margin-top:4rem;display:flex;flex-wrap:wrap;align-items:center;gap:2rem;">
+  <div style="flex:1;min-width:300px;">
+    <h2 data-i18n="about_title">About GeoLearn</h2>
+    <p data-i18n="about_text">
+      GeoLearn helps students explore the world through engaging video lessons, interactive maps, and global knowledge.
+      Our goal is to make geography fun, accessible, and practical for everyone.
+    </p>
+  </div>
+  <div style="flex:1;min-width:300px;">
+    <img src="assets/about.jpg" alt="About GeoLearn" style="width:100%;border-radius:1rem;">
+  </div>
+</section>
+
+<!-- STATISTICS -->
+<section class="container" style="text-align:center; margin-top:3rem;">
+  <div class="grid grid-4" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
+    <div>
+      <h2 style="font-size:2rem;font-weight:700;color:var(--primary);">50K+</h2>
+      <p data-i18n="stat_learners">Active Learners</p>
+    </div>
+    <div>
+      <h2 style="font-size:2rem;font-weight:700;color:#16a34a;">500+</h2>
+      <p data-i18n="stat_videos">Video Lessons</p>
+    </div>
+    <div>
+      <h2 style="font-size:2rem;font-weight:700;color:#f59e0b;">100+</h2>
+      <p data-i18n="stat_topics">Geography Topics</p>
+    </div>
+    <div>
+      <h2 style="font-size:2rem;font-weight:700;color:#0ea5e9;">95%</h2>
+      <p data-i18n="stat_success">Success Rate</p>
+    </div>
+  </div>
+</section>
+
+<footer data-i18n="footer">© 2025 GeoLearn — Explore Our Amazing World</footer>
+<script src="assets/lang.js"></script>
+</body>
+</html>
