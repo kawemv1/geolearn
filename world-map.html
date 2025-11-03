@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>World-Map</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+
+  <!-- ✅ Import Montserrat font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ✅ Apply Montserrat to everything for consistent design */
+    body, button, input, select, textarea {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Smooth font rendering for modern feel */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Optional heading tweaks for uniform look */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="inner">
+    <a href="index.html" class="logo">🌍 GeoLearn</a>
+    <nav>
+      <a href="index.html" data-i18n="home">Home</a>
+      <a href="lessons.html" data-i18n="lessons">Lessons</a>
+      <a href="world-map.html" data-i18n="map" style="color:#2563eb;font-weight:600;">World Map</a>
+      <a href="training.html" data-i18n="training">Training</a>
+      <a href="ai-chat.html" data-i18n="chat">AI Chat</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:1rem">
+      <div class="lang-switch">
+        <div class="lang-selected">
+          <img id="langFlag" class="lang-flag" src="assets/flags/kz.png">
+          <span id="langName">KZ</span>
+        </div>
+        <div class="lang-dropdown">
+          <div class="lang-item" data-lang="kz"><img class="lang-flag" src="assets/flags/kz.png">Қазақ тілі</div>
+          <div class="lang-item" data-lang="ru"><img class="lang-flag" src="assets/flags/ru.png">Русский</div>
+          <div class="lang-item" data-lang="en"><img class="lang-flag" src="assets/flags/gb.png">English</div>
+        </div>
+      </div>
+      <a href="lessons.html" class="btn" data-i18n="start">Get Started</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <h1 data-i18n="map_title">Interactive World Map</h1>
+  <p data-i18n="map_text">Switch between political, physical, satellite and other map layers.</p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="card">
+  <span data-i18n="coords_label">Coordinates</span> • 
+  <button class="btn" id="reset" data-i18n="reset_btn">Reset</button>
+</div>
+
+<footer data-i18n="footer">© 2025 GeoLearn — Explore Our Amazing World</footer>
+<script src="assets/lang.js"></script>
+</body>
+</html>

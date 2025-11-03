@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Training</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+
+  <!-- ✅ Import Montserrat font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ✅ Apply Montserrat to all text */
+    body, button, input, select, textarea {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Optional: Make headings slightly bolder for visual consistency */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Optional: Slightly smoother font rendering for Montserrat */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="inner">
+    <a href="index.html" class="logo">🌍 GeoLearn</a>
+    <nav>
+      <a href="index.html" data-i18n="home">Home</a>
+      <a href="lessons.html" data-i18n="lessons">Lessons</a>
+      <a href="world-map.html" data-i18n="map">World Map</a>
+      <a href="training.html" data-i18n="training">Training</a>
+      <a href="ai-chat.html" data-i18n="chat" style="color:#2563eb;font-weight:600;">AI Chat</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:1rem">
+      <div class="lang-switch">
+        <div class="lang-selected">
+          <img id="langFlag" class="lang-flag" src="assets/flags/kz.png">
+          <span id="langName">KZ</span>
+        </div>
+        <div class="lang-dropdown">
+          <div class="lang-item" data-lang="kz"><img class="lang-flag" src="assets/flags/kz.png">Қазақ тілі</div>
+          <div class="lang-item" data-lang="ru"><img class="lang-flag" src="assets/flags/ru.png">Русский</div>
+          <div class="lang-item" data-lang="en"><img class="lang-flag" src="assets/flags/gb.png">English</div>
+        </div>
+      </div>
+      <a href="lessons.html" class="btn" data-i18n="start">Get Started</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <h1 data-i18n="training_title">Training</h1>
+  <p data-i18n="training_text">Practice tests for UBT and Olympiads</p>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="container" style="text-align:center; padding:3rem 0;">
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
+    <button class="btn" onclick="start('ubt')" data-i18n="ubt_btn">Start UBT Test</button>
+    <button class="btn" style="background:hsl(var(--forest))" onclick="start('olympiad')" data-i18n="oly_btn">Start Olympiad Test</button>
+  </div>
+
+  <div id="quiz" style="margin-top:2rem;"></div>
+</section>
+
+<footer data-i18n="footer">© 2025 GeoLearn — Explore Our Amazing World</footer>
+
+<script src="assets/lang.js"></script>
+
+<script>
+const QUESTIONS = {
+  ubt: [
+    { q: "Which line on a map connects points of equal elevation?",
+      opts: ["Isobar", "Isotherm", "Contour line", "Meridian"], a: 2 }
+  ],
+  olympiad: [
+    { q: "The Ring of Fire is associated with which tectonic boundary type?",
+      opts: ["Divergent", "Convergent", "Transform", "Passive"], a: 1 }
+  ]
+};
+
+function start(type) {
+  const data = QUESTIONS[type];
+  const q = document.getElementById('quiz');
+  q.innerHTML = '';
+  data.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    const h = document.createElement('h3');
+    h.textContent = (i + 1) + '. ' + item.q;
+    card.appendChild(h);
+    item.opts.forEach((o, idx) => {
+      const label = document.createElement('label');
+      label.style.display = 'block';
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'q' + i;
+      input.value = idx;
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(' ' + o));
+      card.appendChild(label);
+    });
+    q.appendChild(card);
+  });
+  const submit = document.createElement('button');
+  submit.className = 'btn';
+  submit.textContent = LANGS[currentLang].score + ' →';
+  submit.onclick = () => {
+    let s = 0;
+    data.forEach((it, i) => {
+      const ch = document.querySelector('input[name="q' + i + '"]:checked');
+      if (ch && +ch.value === it.a) s++;
+    });
+    const p = document.createElement('p');
+    p.className = 'small';
+    p.textContent = LANGS[currentLang].score + ': ' + s + '/' + data.length;
+    q.appendChild(p);
+  };
+  q.appendChild(submit);
+}
+</script>
+
+</body>
+</html>

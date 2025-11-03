@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoLearn AI Chat Assistant</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* === GLOBAL === */
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* === HEADER (exact same as main site) === */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      z-index: 50;
+    }
+
+    header .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #1e293b;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #2563eb;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    nav a.active {
+      color: #2563eb;
+      font-weight: 600;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: none;
+      border: none;
+      font-size: 0.95rem;
+      color: #334155;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-start {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-start:hover {
+      background: #1e40af;
+      transform: scale(1.03);
+    }
+
+    /* === CHAT AREA === */
+    main {
+      flex: 1;
+      margin-top: 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .chat-box {
+      width: 100%;
+      max-width: 760px;
+      background: white;
+      border-radius: 1.2rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: linear-gradient(90deg, #3b82f6, #06b6d4);
+      color: white;
+      padding: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .chat-window {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      background: #f8fafc;
+    }
+
+    .chat-message {
+      max-width: 75%;
+      margin: 0.4rem 0;
+      padding: 0.75rem 1rem;
+      border-radius: 0.9rem;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .chat-message.user {
+      background: #2563eb;
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 0.3rem;
+    }
+
+    .chat-message.bot {
+      background: #f1f5f9;
+      color: #1e293b;
+      border-bottom-left-radius: 0.3rem;
+    }
+
+    .chat-input {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #e5e7eb;
+      background: #fff;
+      padding: 0.75rem 1rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border-radius: 0.8rem;
+      border: 1px solid #cbd5e1;
+      outline: none;
+      font-size: 1rem;
+      transition: 0.3s ease;
+    }
+
+    .chat-input input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .chat-input button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 0.8rem;
+      padding: 0.8rem 1.3rem;
+      margin-left: 0.6rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .chat-input button:hover {
+      background: #1e40af;
+      transform: scale(1.03);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="inner">
+      <a href="index.html" class="logo">
+        <span>🌍GeoLearn</span>
+      </a>
+      <nav>
+        <a href="index.html">Басты бет</a>
+        <a href="lessons.html">Сабақтар</a>
+        <a href="world-map.html">Әлем картасы</a>
+        <a href="training.html">Жаттығу</a>
+        <a href="ai-chat.html" class="active">AI Chat</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <button class="lang-btn">🌐 KZ</button>
+        <a href="lessons.html" class="btn-start">Бастау</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CHAT -->
+  <main>
+    <div class="chat-box">
+      <div class="chat-header">💬 GeoLearn AI Chat Assistant</div>
+      <div id="chatWindow" class="chat-window"></div>
+      <div class="chat-input">
+        <input id="userMessage" type="text" placeholder="География туралы сұрақ қойыңыз..." />
+        <button id="sendBtn">Жіберу</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>© 2025 GeoLearn — Explore Our Amazing World</footer>
+
+  <script>
+    const webhookUrl =
+      "https://n8n.investinkids.kz/webhook/2e9dade9-9d6f-403e-8513-7b760cbbc809";
+    const chatWindow = document.getElementById("chatWindow");
+    const userInput = document.getElementById("userMessage");
+    const sendBtn = document.getElementById("sendBtn");
+
+    sendBtn.addEventListener("click", sendMessage);
+    userInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    async function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      appendMessage("user", text);
+      userInput.value = "";
+
+      const sessionId =
+        localStorage.getItem("geo_session") ||
+        (() => {
+          const s = "session-" + Math.random().toString(36).substring(2, 10);
+          localStorage.setItem("geo_session", s);
+          return s;
+        })();
+
+      const typingMsg = document.createElement("div");
+      typingMsg.classList.add("chat-message", "bot");
+      typingMsg.textContent = "GeoLearn AI ойлануда...";
+      chatWindow.appendChild(typingMsg);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      try {
+        const response = await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "geo123",
+          },
+          body: JSON.stringify({ sessionId, message: text }),
+        });
+
+        const raw = await response.text();
+        let replyText = "";
+        try {
+          const data = JSON.parse(raw);
+          replyText = data.reply || "";
+        } catch {
+          replyText = raw;
+        }
+
+        replyText = replyText.replace(/^=+/, "").trim();
+        typingMsg.innerHTML = marked.parse(
+          replyText || "⚠️ Бос жауап. N8N ағымын тексеріңіз."
+        );
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      } catch (err) {
+        typingMsg.textContent = `⚠️ Байланыс қатесі: ${err.message}`;
+      }
+    }
+
+    function appendMessage(sender, text) {
+      const msg = document.createElement("div");
+      msg.classList.add("chat-message", sender);
+      msg.textContent = text;
+      chatWindow.appendChild(msg);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+  </script>
+</body>
+</html>

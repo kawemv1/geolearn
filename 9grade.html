@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="grade9_title">Grade 9 — GeoLearn</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* --- Local improvements for this page --- */
+    .hero {
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      color: white;
+      text-align: center;
+      padding: 6rem 1rem 4rem;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+      animation: slideUp 1s ease-out .2s forwards;
+      opacity: 0;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0;
+      animation: slideUp 1s ease-out .5s forwards;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 1.5rem;
+      transition: transform .3s, box-shadow .3s;
+      text-align: left;
+      animation: fadeUp .6s ease both;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+
+    .card p {
+      color: #4b5563;
+      margin-bottom: 1rem;
+    }
+
+    .card a.btn {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      border-radius: .5rem;
+      padding: .5rem 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .3s, transform .3s;
+    }
+
+    .card a.btn:hover {
+      background: #1d4ed8;
+      transform: scale(1.05);
+    }
+
+    video {
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      border-radius: 1rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <a href="index.html" class="logo">🌍 GeoLearn</a>
+    <nav>
+      <a href="index.html" data-i18n="home">Home</a>
+      <a href="lessons.html" data-i18n="lessons">Lessons</a>
+      <a href="world-map.html" data-i18n="map">World Map</a>
+      <a href="training.html" data-i18n="training">Training</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:1rem">
+      <div class="lang-switch">
+        <div class="lang-selected">
+          <img id="langFlag" class="lang-flag" src="assets/flags/kz.png">
+          <span id="langName">KZ</span>
+        </div>
+        <div class="lang-dropdown">
+          <div class="lang-item" data-lang="kz"><img class="lang-flag" src="assets/flags/kz.png">Қазақ тілі</div>
+          <div class="lang-item" data-lang="ru"><img class="lang-flag" src="assets/flags/ru.png">Русский</div>
+          <div class="lang-item" data-lang="en"><img class="lang-flag" src="assets/flags/gb.png">English</div>
+        </div>
+      </div>
+      <a href="lessons.html" class="btn" data-i18n="start">Get Started</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 data-i18n="grade9_title">9 сынып — География курсы</h1>
+  <p data-i18n="grade9_desc">9-сынып бағдарламасына сәйкес интерактивті сабақтар, бейнелер және практикалық тапсырмалар.</p>
+</section>
+
+<!-- COURSE STRUCTURE -->
+<!-- COURSE STRUCTURE -->
+<section class="container" style="margin-top:2rem;">
+  <h2 style="text-align:center;margin-bottom:1.5rem;" data-i18n="grade9_lessons">
+    Сабақтар мен материалдар
+  </h2>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <h3>🌋 <span data-i18n="t9_1">Lithosphere. Kazakh oronyms</span></h3>
+      <p data-i18n="t9_1_desc">
+        Литосфера қабығы және Қазақстан жер бедерінің оронимдік ерекшеліктері.
+      </p>
+      <a href="#" class="btn" data-i18n="video_lesson">Бейне сабақ</a>
+    </div>
+
+    <div class="card">
+      <h3>🌤️ <span data-i18n="t9_2">Atmosphere. Names of atmospheric and climatic phenomena</span></h3>
+      <p data-i18n="t9_2_desc">
+        Атмосфераның құрылысы, климаттық белдеулер және климаттық құбылыстар атауы.
+      </p>
+      <a href="#" class="btn" data-i18n="video_lesson">Бейне сабақ</a>
+    </div>
+
+    <div class="card">
+      <h3>💧 <span data-i18n="t9_3">Hydrosphere. Kazakh hydronyms</span></h3>
+      <p data-i18n="t9_3_desc">
+        Гидросфера ұғымы, Қазақстан өзен-көлдерінің гидронимдері мен су ресурстары.
+      </p>
+      <a href="#" class="btn" data-i18n="video_lesson">Бейне сабақ</a>
+    </div>
+
+    <div class="card">
+      <h3>🌱 <span data-i18n="t9_4">Biosphere</span></h3>
+      <p data-i18n="t9_4_desc">
+        Биосфера құрылымы, тірі ағзалардың таралу заңдылықтары мен экожүйелер.
+      </p>
+      <a href="#" class="btn" data-i18n="video_lesson">Бейне сабақ</a>
+    </div>
+
+    <div class="card">
+      <h3>👨‍👩‍👧‍👦 <span data-i18n="t9_5">Population geography. Oikonyms</span></h3>
+      <p data-i18n="t9_5_desc">
+        Халықтың географиялық орналасуы, демографиялық көрсеткіштер және ойконимдер.
+      </p>
+      <a href="#" class="btn" data-i18n="video_lesson">Бейне сабақ</a>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="container" style="margin-top:3rem;text-align:center;">
+  <h2 data-i18n="grade9_video">🎥 Тақырыптық бейне</h2>
+  <video controls style="width:100%;max-width:900px;margin-top:1rem;">
+    <source src="assets/videos/main.mp4" type="video/mp4">
+    <p data-i18n="no_video">Сіздің браузер бейнені қолдамайды.</p>
+  </video>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="container" style="text-align:center;margin-top:4rem;">
+  <h2 data-i18n="grade9_olympiad">📘 Олимпиадаға дайындық</h2>
+  <p data-i18n="grade9_olympiad_desc">География пәні бойынша тесттер мен практикалық тапсырмалар арқылы өз біліміңді жетілдір.</p>
+  <div style="margin-top: 25px; text-align:center;">
+    <a href="training.html" class="btn" data-i18n="go">Жаттығуды бастау</a>
+  </div>
+</section>
+
+<footer style="margin-top:4rem;" data-i18n="footer">© 2025 GeoLearn — Біздің таңғажайып әлемді зертте</footer>
+<script src="assets/lang.js"></script>
+</body>
+</html>
