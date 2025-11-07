@@ -247,19 +247,28 @@
   <!-- HEADER -->
   <header>
     <div class="inner">
-      <a href="index.html" class="logo">
-        <span>🌍GeoLearn</span>
-      </a>
+      <a href="index.html" class="logo">🌍 GeoLearn</a>
       <nav>
-        <a href="index.html">Басты бет</a>
-        <a href="lessons.html">Сабақтар</a>
-        <a href="world-map.html">Әлем картасы</a>
-        <a href="training.html">Жаттығу</a>
-        <a href="ai-chat.html" class="active">AI Chat</a>
+        <a href="index.html" data-i18n="home" style="color:#2563eb;font-weight:600;">Home</a>
+        <a href="lessons.html" data-i18n="lessons">Lessons</a>
+        <a href="world-map.html" data-i18n="map">World Map</a>
+        <a href="training.html" data-i18n="training">Training</a>
+        <a href="ai-chat.html" data-i18n="chat">AI Chat</a>
       </nav>
-      <div style="display:flex;align-items:center;gap:1rem;">
-        <button class="lang-btn">🌐 KZ</button>
-        <a href="lessons.html" class="btn-start">Бастау</a>
+
+      <div style="display:flex;align-items:center;gap:1rem">
+        <div class="lang-switch">
+          <div class="lang-selected">
+            <img id="langFlag" class="lang-flag" src="assets/flags/kz.png">
+            <span id="langName">KZ</span>
+          </div>
+          <div class="lang-dropdown">
+            <div class="lang-item" data-lang="kz"><img class="lang-flag" src="assets/flags/kz.png">Қазақ тілі</div>
+            <div class="lang-item" data-lang="ru"><img class="lang-flag" src="assets/flags/ru.png">Русский</div>
+            <div class="lang-item" data-lang="en"><img class="lang-flag" src="assets/flags/gb.png">English</div>
+          </div>
+        </div>
+        <a href="lessons.html" class="btn" data-i18n="start">Get Started</a>
       </div>
     </div>
   </header>
@@ -267,16 +276,16 @@
   <!-- CHAT -->
   <main>
     <div class="chat-box">
-      <div class="chat-header">💬 GeoLearn AI Chat Assistant</div>
+      <div class="chat-header" data-i18n="aichatheader">💬 GeoLearn AI Chat Assistant</div>
       <div id="chatWindow" class="chat-window"></div>
       <div class="chat-input">
-        <input id="userMessage" type="text" placeholder="География туралы сұрақ қойыңыз..." />
-        <button id="sendBtn">Жіберу</button>
+        <input id="userMessage" type="text"/>
+        <button id="sendBtn" data-i18n="sendbtnai">Жіберу</button>
       </div>
     </div>
   </main>
 
-  <footer>© 2025 GeoLearn — Explore Our Amazing World</footer>
+  <footer data-i18n="footer">© 2025 GeoLearn — Explore Our Amazing World</footer>
 
   <script>
     const webhookUrl =
@@ -348,5 +357,6 @@
       chatWindow.scrollTop = chatWindow.scrollHeight;
     }
   </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>
