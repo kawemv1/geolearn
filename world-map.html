@@ -65,10 +65,63 @@
 </section>
 
 <!-- MAIN CONTENT -->
-<div class="card">
-  <span data-i18n="coords_label">Coordinates</span> • 
+<div class="card" style="padding: 1rem;">
+  <span data-i18n="coords_label">Coordinates:</span>
+  <span id="coords">—</span>
   <button class="btn" id="reset" data-i18n="reset_btn">Reset</button>
+
+  <div id="world-map" style="width:100%;height:600px;margin-top:1rem;border-radius:10px;overflow:hidden;"></div>
 </div>
+
+<!-- Mapbox JS + CSS -->
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+<script>
+  // ✅ Use your Mapbox public token (replace with your own if available)
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ._ZzltYQzRwZXEJfFcaCpsQ';
+
+  // 🗺️ Initialize map
+  const map = new mapboxgl.Map({
+    container: 'world-map',
+    style: 'mapbox://styles/mapbox/streets-v12',
+    center: [71.44598, 51.1605], // Astana, Kazakhstan
+    zoom: 3
+  });
+
+  // 🔍 Add navigation controls
+  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+  // 🌐 Style switcher (Street / Satellite)
+  const styleSwitcher = document.createElement('div');
+  styleSwitcher.style = `
+    position:absolute;top:10px;left:10px;background:white;
+    border-radius:6px;padding:6px;font-size:14px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  `;
+  styleSwitcher.innerHTML = `
+    <button id="btnStreet" class="btn">🗺️ Street</button>
+    <button id="btnSat" class="btn" style="background:#22c55e;">🌍 Satellite</button>
+  `;
+  map.getContainer().appendChild(styleSwitcher);
+
+  document.getElementById('btnStreet').onclick = () =>
+    map.setStyle('mapbox://styles/mapbox/streets-v12');
+  document.getElementById('btnSat').onclick = () =>
+    map.setStyle('mapbox://styles/mapbox/satellite-streets-v12');
+
+  // 📍 Display live coordinates
+  const coordsDisplay = document.getElementById('coords');
+  map.on('mousemove', e => {
+    coordsDisplay.textContent = `${e.lngLat.lng.toFixed(2)}, ${e.lngLat.lat.toFixed(2)}`;
+  });
+
+  // 🔁 Reset map view
+  document.getElementById('reset').onclick = () => {
+    map.flyTo({ center: [71.44598, 51.1605], zoom: 3 });
+  };
+</script>
+
 
 <footer data-i18n="footer">© 2025 GeoLearn — Explore Our Amazing World</footer>
 <script src="assets/lang.js"></script>
