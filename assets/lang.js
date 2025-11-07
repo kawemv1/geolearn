@@ -6,6 +6,8 @@ const LANGS = {
     training: 'Training',
     start: 'Get Started',
     go: 'Start to learn',
+    aichatheader: '💬 GeoLearn AI Chat Assistant',
+    sendbtnai: 'Send',
 
     hero_title: 'Explore Our Amazing World',
     hero_text: 'Learn geography through engaging lessons, interactive maps, and olympiad preparation.',
@@ -89,6 +91,8 @@ const LANGS = {
     training: 'Тренировки',
     start: 'Начать',
     go: 'Начать учить',
+    aichatheader: '💬 GeoLearn ИИ Чат Ассистент',
+    sendbtnai: 'Отправить',
 
     hero_title: 'Открой наш удивительный мир',
     hero_text: 'Изучай географию через увлекательные уроки, интерактивные карты и подготовку к олимпиадам.',
@@ -172,6 +176,8 @@ const LANGS = {
     training: 'Жаттығу',
     start: 'Бастау',
     go: 'Оқуды бастау',
+    aichatheader: '💬 GeoLearn ЖИ Чат Ассистент',
+    sendbtnai: 'Жіберу',
 
     hero_title: 'Тамаша әлемді зертте',
     hero_text: 'Географияны қызықты сабақтар, интерактивті карталар және олимпиадаға дайындық арқылы үйрен.',
